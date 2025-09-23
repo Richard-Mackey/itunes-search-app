@@ -1,0 +1,82 @@
+/* Mobile styles - full width */
+.main-content {
+  margin-top: 56px;
+  padding: 20px;
+  width: 100%;
+  margin-left: 0;
+}
+
+/* Only apply sidebar spacing on medium screens and up */
+@media (min-width: 768px) {
+  .main-content {
+    margin-left: 150px;
+    width: calc(100% - 150px);
+  }
+}
+
+@media (min-width: 768px) {
+  .main-content::before {
+    margin-left: 70px;
+    margin-top: 50px;
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 1300px;
+    height: 1300px;
+    background-image: url("/public/apple_logo.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    opacity: 0.1;
+    z-index: -1;
+    pointer-events: none;
+  }
+}
+
+:root {
+  --bs-dark: #212529;
+}
+
+.sidebar {
+  width: 150px;
+  height: calc(100vh - 56px);
+  padding-top: 20px;
+  position: fixed;
+  left: 0;
+  top: 56px;
+  z-index: 1000;
+  background-color: var(--bs-dark);
+}
+
+/* Hide sidebar on mobile */
+@media (max-width: 767px) {
+  .sidebar {
+    display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .main-content {
+    margin-left: 0;
+    width: 100%;
+  }
+}
+
+.sidebar a {
+  padding: 8px;
+  font-size: 20px;
+  display: block;
+  color: white;
+  text-decoration: none;
+}
+
+.sidebar a:hover {
+  background-color: #333;
+  color: #fff;
+}
+
+.sidebar a.active {
+  background-color: #555;
+  font-weight: bold;
+}
