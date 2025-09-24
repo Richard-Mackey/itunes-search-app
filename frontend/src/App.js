@@ -89,6 +89,13 @@ function AppContent() {
       if (response) {
         const searchData = response.data.results;
         setSearchResults(searchData);
+        if (searchData.length === 0) {
+          setError(
+            "No search results for that request. Please try searching for something else or look under 'All Media' for all results."
+          );
+        } else {
+          setSearchResults(searchData);
+        }
       }
     } catch (error) {
       setError(
