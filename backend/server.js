@@ -8,7 +8,17 @@ const app = express(); // Create app in express
 const axios = require("axios"); // import axios to make HTTP requests to API's
 
 app.use(express.json()); //parses JSON automatically to allow access to data from frontend
-app.use(CORS()); // allows react frontend to react with backend (on different port)
+app.use(
+  CORS({
+    origin: [
+      "https://itunes-search-app-2.onrender.com",
+      "http://localhost:3000",
+    ],
+    credentials: true,
+    methods: ["GET", "POST"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+); // allows react frontend to react with backend (on different port)
 
 //routes for searching API
 const connectAPI = (req, res) => {
