@@ -10,13 +10,15 @@ export default function ResultsDisplay({
   favourites,
   onAddFavourite,
   onRemoveFavourite,
+  onSetError,
 }) {
   // converts date to readable format
   const formatReleaseDate = (dateString) => {
     const date = new Date(dateString);
     return date.toLocaleDateString();
   };
-  // allow results ot be filtered by their media type in the sidebar or dropdown on mobile
+
+  // allow results to be filtered by their media type in the sidebar or dropdown on mobile
   const filterResultsByMediaType = (results, selectedType) => {
     const mediaTypeMapping = {
       music: ["song"],
@@ -54,11 +56,36 @@ export default function ResultsDisplay({
     });
   };
 
-  // Appication of the filter before rendering
+  // Application of the filter before rendering
   const filteredResults = filterResultsByMediaType(
     searchResults,
     selectedMediaType
   );
+
+  // Check if filtered results are empty
+  // Check if filtered results are empty
+  useEffect(() => {
+    if (onSetError) {
+      // Add this safety check
+      if (searchResults.length > 0 && filteredResults.length === 0) {
+        onSetError(
+          "No search results for that request. Please try searching for something else or look under 'All Media' for all returned results."
+        );
+      } else {
+        onSetError(""); // Clear error when we have results
+      }
+    }
+  }, [
+    filteredResults.length,
+    searchResults.length,
+    selectedMediaType,
+    onSetError,
+  ]);
+
+  // Don't render anything if no filtered results
+  if (filteredResults.length === 0) {
+    return null;
+  }
 
   return (
     <div className="container-fluid">

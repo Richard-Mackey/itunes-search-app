@@ -88,14 +88,7 @@ function AppContent() {
 
       if (response) {
         const searchData = response.data.results;
-
-        if (searchData.length === 0) {
-          setError(
-            "No search results for that request. Please try searching for something else or look under 'All Media' for all results."
-          );
-        } else {
-          setSearchResults(searchData);
-        }
+        setSearchResults(searchData);
       }
     } catch (error) {
       setError(
@@ -179,6 +172,7 @@ function AppContent() {
                     favourites={favourites}
                     onAddFavourite={addToFavourites}
                     onRemoveFavourite={removeFromFavourites}
+                    onSetError={setError}
                   />
                 )}
               </>
