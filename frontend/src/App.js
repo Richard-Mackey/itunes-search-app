@@ -99,7 +99,8 @@ function AppContent() {
       }
     } catch (error) {
       setError(
-        error.message || "No search results for that request. Please try again."
+        error.message ||
+          "Connection error. Please check your internet and try again."
       );
     } finally {
       setIsSearching(false);
@@ -162,6 +163,14 @@ function AppContent() {
                     selectedMediaType={selectedMediaType}
                     onMediaTypeChange={setSelectedMediaType}
                   />
+                )}
+                {error && (
+                  <div
+                    className="alert alert-warning text-center mt-3"
+                    role="alert"
+                  >
+                    {error}
+                  </div>
                 )}
                 {searchResults.length > 0 && (
                   <ResultsDisplay
