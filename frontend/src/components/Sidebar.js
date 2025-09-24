@@ -1,5 +1,5 @@
 // sidebar filter
-
+import { useNavigate } from "react-router-dom";
 import "./Sidebar.css";
 
 const mediaTypes = [
@@ -13,10 +13,14 @@ const mediaTypes = [
   { value: "TV_episode", label: "TV Shows" },
   { value: "Ebook", label: "eBooks" },
 ];
-// allows sidebar to filter different media types
+
 const Sidebar = ({ selectedMediaType, onMediaTypeChange }) => {
+  const navigate = useNavigate();
+
   const handleMediaTypeClick = (mediaType) => {
     onMediaTypeChange(mediaType);
+    // Always navigate to search page when filter is clicked
+    navigate("/");
   };
 
   return (
@@ -39,4 +43,5 @@ const Sidebar = ({ selectedMediaType, onMediaTypeChange }) => {
     </div>
   );
 };
+
 export default Sidebar;
