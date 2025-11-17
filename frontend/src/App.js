@@ -9,10 +9,7 @@ import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import axios from "axios";
 
 function AppContent() {
-  const API_BASE_URL =
-    process.env.NODE_ENV === "production"
-      ? "https://itunes-search-app-ysx2.onrender.com"
-      : "http://localhost:8000";
+  const API_BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:8000";
   const [searchResults, setSearchResults] = useState([]); // stores the array from the search of the API
   const [error, setError] = useState(""); // stores any error messages
   const [favourites, setFavourites] = useState([]); // stores users favourite items
