@@ -7,11 +7,11 @@ const { jwtMiddleware } = require("./middleware/middleware_auth"); // connection
 const app = express(); // Create app in express
 const axios = require("axios"); // import axios to make HTTP requests to API's
 
-app.use(express.json()); //parses JSON automatically to allow access to data from frontend
+app.use(express.json());
 app.use(
   CORS({
     origin: [
-      "https://itunes-search-app-2.onrender.com",
+      process.env.FRONTEND_URL || "http://localhost:3000",
       "http://localhost:3000",
     ],
     credentials: true,
